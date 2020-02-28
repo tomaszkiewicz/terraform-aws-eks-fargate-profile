@@ -30,3 +30,9 @@ variable "labels" {
   description = "Key-value mapping of Kubernetes labels for selection"
   default     = {}
 }
+
+variable "override_fargate_profile_name" {
+  type        = string
+  description =  "Overrides fargate profile name, useful if your cluster name starts with restricted prefix (eks-)"
+  default     = ""
+}
