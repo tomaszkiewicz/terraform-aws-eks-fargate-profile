@@ -30,7 +30,7 @@ resource aws_iam_role_policy_attachment attachment_main {
 resource aws_eks_fargate_profile this {
   count                  = var.enabled ? 1 : 0
   cluster_name           = var.cluster_name
-  fargate_profile_name   = var.override_fargate_profile_name ? var.override_fargate_profile_name : format("%s-fargate-%s", var.cluster_name, var.namespace)
+  fargate_profile_name   = var.override_fargate_profile_name != "" ? var.override_fargate_profile_name : format("%s-fargate-%s", var.cluster_name, var.namespace)
   pod_execution_role_arn = join("", aws_iam_role.this.*.arn)
   subnet_ids             = var.subnet_ids
   tags = merge(var.tags,
